@@ -1,0 +1,18 @@
+nginx:
+    build: ./nginx
+    links:
+        - tomee:tomee
+    volumes:
+        - ~/mount:/var/log/nginx
+    ports:
+        - "80:80"
+tomee:
+    build: ./tomee
+    links:
+        - mysql
+    ports:
+        - "8080:8080"
+mysql:
+    build: ./mysql
+    ports:
+        - "3306:3306"
